@@ -1,0 +1,25 @@
+<template name="CommentsList">
+    {{#if hasMoreComments}}
+        <div class="show-all-comments text-align-center">show all comments</div>
+    {{else}}
+        {{#if hasCommentsToHide}}
+            <div class="show-all-comments text-align-center">hide all comments</div>
+        {{/if}}
+    {{/if}}
+    <ul class="list-group">
+        {{#each comments}}
+            <li class="list-group-item">
+                {{> CommentCard}}
+            </li>
+        {{else}}
+            <li class="list-group-item">
+                <h5>No comment yet. Be the first</h5>
+            </li>
+        {{/each}}
+    </ul>
+    {{#if isLogged}}
+    <div class="add-item-container">
+        {{> quickForm collection="Comments" id=insertCommentFormId type="insert" class="new-comment-form" doc=newComment}}
+    </div>
+    {{/if}}
+</template>

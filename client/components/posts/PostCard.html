@@ -1,0 +1,30 @@
+<template name="PostCard">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{#if isLogged}}
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            {{/if}}
+            {{#if editMode}}
+                {{> quickForm collection="Posts" id=updatePostId type="update" doc=this class="post-edit-form"}}
+            {{else}}
+                <p class="post-title">
+                    {{title}}
+                </p>
+                {{#if isLogged}}
+                    <small>
+                        <a href="" class="edit">edit</a>
+                    </small>
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="panel-body">
+            <span><i class="glyphicon glyphicon-thumbs-up"></i> {{votesCount}}</span> |
+            <span><i class="glyphicon glyphicon-calendar"></i> {{postDate}}</span> |
+            <span><i class="glyphicon glyphicon-user"></i> {{author}}</span>
+            {{> VoteProduct postId=_id}}
+        </div>
+        {{> CommentsList postId=_id}}
+    </div>
+</template>

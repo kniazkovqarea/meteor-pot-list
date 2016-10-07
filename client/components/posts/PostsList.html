@@ -1,0 +1,27 @@
+<template name="PostsList">
+    <h1>Posts List</h1>
+    <hr/>
+    {{#if isLogged}}
+        {{> NewPost}}
+    {{/if}}
+    <div class="posts-list">
+        {{#each posts}}
+            {{> PostCard}}
+        {{else}}
+            {{#unless isLoading}}
+                <h3>No post yet. Be the first</h3>
+            {{/unless}}
+        {{/each}}
+        {{#if isLoading}}
+            <div class="text-align-center">
+                <span>Loading...</span>
+            </div>
+        {{else}}
+            {{#if hasMorePosts}}
+                <div class="text-align-center">
+                    <button class="btn btn-primary btn-lg load-more">Load More</button>
+                </div>
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
